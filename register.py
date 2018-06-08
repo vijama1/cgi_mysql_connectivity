@@ -11,6 +11,7 @@ number=int(web_data.getvalue('number'))
 email=web_data.getvalue('email')
 password=web_data.getvalue('password')
 
+
 conn=mysql.connect(user='root',password='password',database='cgi',host='localhost')
 if conn.is_connected():
     print("Connected")
@@ -18,5 +19,15 @@ if conn.is_connected():
     #query='INSERT INTO cgi_info VALUES("%s","%d","%s","%s")'%(name,number,email,password))
     out = curs.execute('insert into cgi_info values("%s","%d","%s","%s")'%(name,number,email,password))
     conn.commit()
+    redirectURL = "http://127.0.0.1/login.html"
+    print('<html>')
+    print('  <head>')
+    print('    <meta http-equiv="refresh" content="0;url='+str(redirectURL)+'" />')
+    print('  </head>')
+    print('</html>')
+
+
+
 else:
     print("Not Connected")
+
